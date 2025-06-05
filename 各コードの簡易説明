@@ -1,0 +1,45 @@
+ご閲覧いただきありがとうございます。
+本資料は、Unity3Dエンジンで開発したゲームの各種スクリプトのファイル説明をまとめたものです。
+それぞれのファイルの役割を以下に簡潔に記載いたします。ご確認いただけますと幸いです。
+
+Noise-Content
+敵オブジェクトがプレイヤーに近づくほど、画面上のノイズの色や透明度が変化する処理を制御しています。
+距離計測や透明度の制御をまとめたスクリプトです。
+
+Action（ItemPickup、PlayerCollision）
+ItemPickup：プレイヤーが特定のアイテム（例：補聴器）に近づき、取得入力を行った際にアイテムを拾う処理を制御します。
+
+PlayerCollision：敵オブジェクトに触れると、指定したゲームオーバーシーンへ遷移させる処理を行います。
+
+DoorScript
+プレイヤーが指定トリガー内にいる状態で入力（例：Eキー）を行うと、ドアの開閉アニメーションを制御します。
+Animator Controllerのパラメータ切り替えにより、開閉をトグル式で実現しています。
+
+A（haikai, onimanager, reltukiyo）
+haikai：NavMeshAgentを使い、敵キャラクターが指定範囲内をランダムに徘徊する動作を制御します。
+移動範囲（wanderRadius）、待機時間（wanderDelay）、移動速度（wanderSpeed）を調整可能です。
+
+onimanager：敵キャラクターがプレイヤーをリアルタイムで追跡する処理を行います。
+追跡速度（chaseSpeed）をインスペクターで調整可能。
+プレイヤーの位置をSetDestinationで常に更新し追跡します。
+
+reltukiyo：敵の行動制御の司令塔で、視界検知により「徘徊モード」と「追跡モード」を切り替えます。
+プレイヤーを視認すると追跡モードへ切替、視認を失うと一定時間後に徘徊モードに戻ります。
+
+Lights（LightSwichInteraction_Auto, LightSwitchInteraction, LightSwich）
+LightSwichInteraction_Auto：プレイヤーがトリガー領域に入るとライトが自動点灯し、離れると2秒後に自動消灯します。
+
+LightSwitchInteraction：プレイヤーが範囲内にいる間、キー入力（例：Tキー）で手動でライトのON/OFFを切り替えられます。
+
+LightSwich：ライトのON/OFF切り替え機能を持ち、ゲーム開始時の状態設定やToggleLight()メソッドで切り替え可能です。
+
+Scene（gameOver, GamePlay, GotoTitle）
+各シーン間の遷移を制御するコード群です。
+改良版（SceneTransition, SceneTransition02）を用いて複数シーン遷移処理を共通化し、データ容量の節約を実現しています。
+
+Trigger
+オブジェクトにイベント発生用のトリガー機能を付与するためのスクリプトです。
+
+UI
+プレイヤーが特定のアイテムを取得した際、そのアイテムに関連するUI（例：補聴器の画像）を表示する処理を管理しています。
+
